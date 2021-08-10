@@ -167,6 +167,10 @@ input, select, textarea {
 			border-bottom-color: transparent;
 		}
 
+		a.noHover {
+			pointer-events: none;
+		}
+
 	strong, b {
 		font-weight: 600;
 	}

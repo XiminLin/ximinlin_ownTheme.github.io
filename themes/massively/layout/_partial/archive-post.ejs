@@ -4,7 +4,9 @@
         <span class="date"><%= date(post.date, 'MMM D, YYYY') %></span>
         <h2><a href="<%- url_for(post.path) %>"><%= post.title %></a></h2>
     </header>
-    <a href="#" onclick="return false;" class="image fit"><img src="/<%- post.path %><%- post.intro_image %>" alt="" /></a>
+    <% if(post.intro_image) { %>
+        <a href="<%- url_for(post.path) %>" class="image fit"><img src="/<%- post.path %><%- post.intro_image %>" alt="" /></a>
+    <% } %>
     <p><%- post.excerpt %></p>
     <ul class="actions special">
         <li><a href="<%- url_for(post.path) %>" class="button">Full Story</a></li>

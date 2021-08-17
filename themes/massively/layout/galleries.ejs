@@ -7,8 +7,11 @@
                 <% var photo_name = config.gallery_dir + "/" + gallery.name + "/" + gallery.cover; %>
                 <% var gallery_link = config.gallery_dir + "/" + gallery.name + "/"%>
                 <article>
+                    <header>
+                        <h2><a href="<%- gallery_link %>"><%- gallery.name %></a></h2>
+                    </header>
                     <a href="<%- gallery_link %>" class="image fit">
-                        <img src="<%- photo_name %>" alt=""><%= gallery.name %></img>
+                        <img src="<%- photo_name %>" alt="" />
                     </a>
                 </article>
             <% } %>

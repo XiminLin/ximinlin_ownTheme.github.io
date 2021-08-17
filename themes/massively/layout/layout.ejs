@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+    <%- partial("_partial/head") %>
+    <body class="is-preload">
+
+        <div id="wrapper" class="fade-in">
+
+            <!-- Intro -->
+            <% if(page.title == "home")  { %>
+                <%- partial('_partial/intro') %>
+            <% } %>
+
+            <!-- Header -->
+            <%- partial('_partial/header') %>
+
+            <!-- Navigation -->
+            <%- partial('_partial/navigation') %>
+
+            <!-- Main -->
+            <%- body %>
+
+            <!-- Footer -->
+            <%- partial('_partial/footer') %>
+
+            <!-- Copyright -->
+            <div id="copyright">
+                <ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+            </div>
+
+        </div>
+    
+    <!-- Scripts -->
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/browser.min.js"></script>
+    <script src="/js/breakpoints.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+    
+    </body>
+</html>

@@ -1,0 +1,13 @@
+<div id="main">
+    <!-- Posts-Lists -->
+    <section class="posts">
+        <% page.posts.forEach(function(post) { %>
+            <%- partial("_partial/archive-post", {post: post})%>
+        <% }) %>
+    </section>
+
+    <!-- Pagination -->
+    <footer>
+        <%- partial('_pagination/current') %>
+    </footer>
+</div>

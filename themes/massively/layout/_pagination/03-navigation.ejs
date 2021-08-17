@@ -1,0 +1,63 @@
+<%  
+    // Helper Function
+    function pagination_url(number) {
+        var path = config.index_generator.path + url_for(page.path);
+
+        if(number > 1) {
+            path = path + "/" + config.pagination_dir + "/" + number;
+        }
+
+        return url_for(path);
+    }
+%>
+
+<div class="pagination">
+
+    <!-- More Than One Page -->
+    <% if(page.total > 1) { %> 
+        <!-- First Page -->
+        <% if (page.prev != 0) { %>
+            <a href="<%= url_for(page.path) + config.index_generator.path %>"> &lt;&lt; </a>
+        <% } else { %>
+            <a title="this is the first page" class="noHover" disabled> &lt;&lt; </a>
+        <% } %>
+    <% } %>
+
+    <!-- Prev Page -->
+    <% if(page.prev_link) { %>
+        <a href="<%- url_for(page.prev_link) %>"> &lt; </a>
+    <% } else { %>
+        <a title="no prev page" class = "noHover" disabled> &lt; </a>
+    <% } %>
+
+    <!-- page number -->
+    <% var cursor; %>
+    <% for(cursor = 1; cursor <= page.total; cursor++ ) { %>
+        <% if(cursor != page.current) { %>
+            <a href="<%- pagination_url(cursor) %>" class="page"><%= cursor %></a>
+        <% } else { %>
+            <a title="current page" class="page active noHover"><%= cursor %></a>
+        <% } %>
+    <% } %>
+
+    <!-- Next Page -->
+    <% if(page.next_link) { %>
+        <a href="<%- url_for(page.next_link) %>"> &gt; </a>
+    <% } else { %>
+        <a title="no next page" class="noHover" disabled> &gt; </a>
+    <% } %>
+
+    <!-- More Than One Page -->
+    <% if(page.total > 1) { %> 
+        <!-- Last -->
+        <% if(page.next != 0) { %>
+        <% var lastPage = url_for(page.path) + config.index_generator.path + "/" + config.pagination_dir + "/" + page.total; %>
+            <a href="<%= url_for(lastPage) %>"> &gt;&gt; </a>
+        <% } else { %>
+            <a title="this is the last page" class="noHover" disabled> &gt;&gt; </a>
+        <% } %>
+    <% } %>
+
+
+</div>
+

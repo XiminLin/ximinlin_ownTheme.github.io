@@ -1,0 +1,13 @@
+<head>
+    <% if(page.category) { 
+        var title = page.category;
+    } else {
+        var title = page.title;
+    }
+    %> 
+    <title>Ximin's <%- title %></title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <noscript><link rel="stylesheet" href="/css/noscript.css" /></noscript>
+</head>

@@ -1,0 +1,23 @@
+<div class="pagination">
+    <%  function pagination_url(number) {
+            var path = config.index_generator.path + url_for(page.path);
+
+            // console.log(page.)
+
+            if(number > 1) {
+                path = path + "/" + config.pagination_dir + "/" + number;
+            }
+
+            return url_for(path);
+        }
+    %>
+    <% var cursor;
+        for(cursor = 1; cursor <= page.total; cursor++ ) { %>
+            <% if(cursor != page.current) { %>
+                <a href="<%- pagination_url(cursor) %>" class="page"><%= cursor %></a>
+            <% } else { %>
+                <a title="current page" class="page active noHover"><%= cursor %></a>
+            <% } %>
+    <% } %>
+
+</div>

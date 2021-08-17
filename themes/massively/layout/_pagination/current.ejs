@@ -1,0 +1,41 @@
+<%  
+    // Helper Function
+    function pagination_url(number) {
+        var path = config.index_generator.path + url_for(page.path);
+
+        if(number > 1) {
+            path = path + "/" + config.pagination_dir + "/" + number;
+        }
+
+        return url_for(path);
+    }
+%>
+
+<div class="pagination">
+
+    <!-- Prev Page -->
+    <% if(page.prev_link) { %>
+        <a href="<%- url_for(page.prev_link) %>"> &lt; </a>
+    <% } else { %>
+        <a title="no prev page" class = "noHover" disabled> &lt; </a>
+    <% } %>
+
+    <!-- page number -->
+    <% var cursor; %>
+    <% for(cursor = 1; cursor <= page.total; cursor++ ) { %>
+        <% if(cursor != page.current) { %>
+            <a href="<%- pagination_url(cursor) %>" class="page"><%= cursor %></a>
+        <% } else { %>
+            <a title="current page" class="page active noHover"><%= cursor %></a>
+        <% } %>
+    <% } %>
+
+    <!-- Next Page -->
+    <% if(page.next_link) { %>
+        <a href="<%- url_for(page.next_link) %>"> &gt; </a>
+    <% } else { %>
+        <a title="no next page" class="noHover" disabled> &gt; </a>
+    <% } %>
+
+</div>
+

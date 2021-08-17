@@ -1,0 +1,17 @@
+<div id="main">
+    <section class="posts">
+        <% if (site.data && site.data.galleries) { %>
+            <% var galleries = site.data.galleries; %>
+            <% for(var i = 0; i < galleries.length; i++) { %>
+                <% var gallery = galleries[i]; %>
+                <% var photo_name = config.gallery_dir + "/" + gallery.name + "/" + gallery.cover; %>
+                <% var gallery_link = config.gallery_dir + "/" + gallery.name + "/"%>
+                <article>
+                    <a href="<%- gallery_link %>" class="image fit">
+                        <img src="<%- photo_name %>" alt=""><%= gallery.name %></img>
+                    </a>
+                </article>
+            <% } %>
+        <% } %>
+    </section>
+</div>

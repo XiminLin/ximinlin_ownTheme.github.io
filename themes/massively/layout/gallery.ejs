@@ -1,0 +1,30 @@
+<% 
+    if(site.data && site.data.galleries) {
+        var galleries = site.data.galleries;
+        var gallery;
+        for(var i = 0; i < galleries.length; i++) {
+            gallery = galleries[i];
+            if(gallery.name == page.title) {
+                break;
+            }
+        }
+    }
+%>
+
+
+<div id="main">
+    <% if(gallery) { %>
+    <div class='box alt'>
+        <div class="row gtr-50 gtr-uniform">
+            <% for(var i = 0; i < gallery.photos.length; i++)  { %>
+                <% var photo_name = config.gallery_dir + "/" + gallery.name + "/" + gallery.photos[i]; %>
+                <div class="col-4">
+                    <a href="<%- photo_name %>" class="image fit">
+                        <img src="<%- photo_name %>" />
+                    </a>
+                </div>
+            <% } %>
+        </div>
+    </div>
+    <% } %>
+</div>

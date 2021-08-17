@@ -1,0 +1,45 @@
+<div class="pagination">
+    <!-- Prev Page -->
+    <% if(page.prev_link) { %>
+        <a href="<%= url_for(page.prev_link) %>">Prev</a>
+    <% } else { %>
+        <a title="this is the first page" class="disabled">Prev</a>
+    <% } %>
+
+    <!-- Next Page -->
+    <% if(page.next_link) { %>
+        <a href="<%= url_for(page.next_link) %>">Next</a>
+    <% } else { %>
+        <a title="this is the last page" class="disabled">Next</a>
+    <% } %>
+
+    <!-- First and Last -->
+    <% if(page.total > 1) { %> 
+        <!-- First Page -->
+        <% if (page.prev != 0) { %>
+            <a href="<%= url_for(config.index_generator.path) %>"> First </a>
+        <% } else { %>
+            <a title="this is the first page" class="disabled"> First </a>
+        <% } %>
+
+        <!-- Last -->
+        <% if(page.next != 0) { %>
+        <% var lastPage = config.index_generator.path + "/" + config.pagination_dir + "/" + page.total; %>
+            <a href="<%= url_for(lastPage) %>"> Last </a>
+        <% } else { %>
+            <a title="this is the last page" class="disabled"> Last </a>
+        <% } %>
+    <% } %>
+</div>
+
+
+
+<!--<a href="#" class="previous">Prev</a>-->
+<!-- <a href="#" class="page active">1</a>
+<a href="#" class="page">2</a>
+<a href="#" class="page">3</a>
+<span class="extra">&hellip;</span>
+<a href="#" class="page">8</a>
+<a href="#" class="page">9</a>
+<a href="#" class="page">10</a>
+<a href="#" class="next">Next</a> -->

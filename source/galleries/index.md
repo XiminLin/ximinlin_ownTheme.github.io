@@ -1,0 +1,8 @@
+---
+title: galleries
+layout: "galleries"
+---
+
+
+
+

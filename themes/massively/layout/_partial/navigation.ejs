@@ -1,0 +1,27 @@
+<nav id="nav">
+    <ul class="links">
+        <% for(var nav in config.navigation) { %>
+            <%  
+                var myclass = "";
+                if(is_category(nav) ) {
+                    myclass = "active";
+                }
+                
+                if(is_page() && nav == page.title ) {
+                    myclass = "active";
+                }
+
+                if(is_tag(nav) ) {
+                    myclass = "active";
+                }
+            %>
+            <li class=<%-myclass%> ><a href="<%- url_for(config.navigation[nav].link) %>"><%- nav %></a></li>
+        <% } %>
+    </ul>
+    <ul class="icons">
+        <!-- <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+        <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+        <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li> -->
+        <li><a href="https://github.com/XiminLin" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+    </ul>
+</nav>

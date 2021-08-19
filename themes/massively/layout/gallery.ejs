@@ -17,7 +17,7 @@
     <div class='box alt'>
         <div class="row gtr-50 gtr-uniform">
             <% for(var i = 0; i < gallery.photos.length; i++)  { %>
-                <% var photo_name = config.gallery_dir + "/" + gallery.name + "/" + gallery.photos[i]; %>
+                <% var photo_name = gallery.photos[i]; %>
                 <div class="col-4">
                     <a href="<%- photo_name %>" class="image fit">
                         <img src="<%- photo_name %>" />

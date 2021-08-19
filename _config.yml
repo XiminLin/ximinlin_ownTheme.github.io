@@ -99,7 +99,7 @@ pagination_dir: page
 
 
 # Gallery
-gallery_dir: /gallery-images
+gallery_dir: /galleries
 
 # Include / Exclude file(s)
 ## include:/exclude: options only apply to the 'source/' folder

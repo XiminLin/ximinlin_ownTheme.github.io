@@ -1,4 +1,4 @@
 ---
-title: UIUC_Routines
+title: UIUC Routines
 layout: "gallery"
 ---

@@ -2,11 +2,15 @@
     <section class="posts">
         <% if (site.data && site.data.galleries) { %>
             <% var galleries = site.data.galleries; %>
-            <% for(var i = 0; i < galleries.length; i++) { %>
+            <% for(var i = galleries.length-1; i >= 0; i--) { %>
                 <% var gallery = galleries[i]; %>
-                <% var gallery_link = config.gallery_dir + "/" + gallery.name + "/"%>
+                <% var gallery_path = gallery.name.replace(/ /g, '_') %>
+                <% var gallery_link = config.gallery_dir + "/" + gallery_path + "/"%>
                 <article>
                     <header>
+                        <% if(gallery.date) { %>
+                        <span class="date"><%= date(gallery.date, 'MMM, YYYY') %></span>
+                        <% } %>
                         <h2><a href="<%- gallery_link %>"><%- gallery.name %></a></h2>
                     </header>
                     <a href="<%- gallery_link %>" class="image fit">

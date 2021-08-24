@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+     
+    <title>Ximin's Two Sums</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/justifiedGallery.css" />
+    <!-- <link rel='stylesheet' type='text/html' href="/css/jquery.fancybox.css" media="all"/> -->
+    <noscript><link rel="stylesheet" href="/css/noscript.css" /></noscript>
+<meta name="generator" content="Hexo 5.4.0"></head>
+    <body class="is-preload">
+
+        <div id="wrapper" class="fade-in">
+
+            <!-- Intro -->
+            
+
+            <!-- Header -->
+            <header id="header">
+    <a href="/" class="logo">JFF</a>
+</header>
+
+            <!-- Navigation -->
+            <nav id="nav">
+    <ul class="links">
+        
+            
+            <li class= ><a href="/home/">home</a></li>
+        
+            
+            <li class= ><a href="/categories/blog/">blog</a></li>
+        
+            
+            <li class= ><a href="/categories/project/">project</a></li>
+        
+            
+            <li class= ><a href="/resume/">resume</a></li>
+        
+            
+            <li class= ><a href="/galleries/">galleries</a></li>
+        
+    </ul>
+    <ul class="icons">
+        <!-- <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+        <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+        <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li> -->
+        <li><a target="_blank" rel="noopener" href="https://github.com/XiminLin" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+    </ul>
+</nav>
+
+            <!-- Main -->
+            <div id="main">
+    <!-- Post -->
+    <section class="post">
+        <header class="major">
+            <span class="date">Aug 24, 2021</span>
+            <h1>Two Sums</h1>
+        </header>
+        <p>Leetcode summary from 2Sums and its modification to NSums.</p>
+<span id="more"></span>
+<h2 id="Two-Sums">Two Sums:</h2>
+<pre><code>Two sums:
+
+ 	1. sort + two pointers
+ 	2. hashmap for equal question
+
+N-sums:
+
+1. 分解成 n-1 sums，像 3sums 变 2sums, 之后 pointers 里面找规律能不能 O(n) 来做
+</code></pre>
+<ol>
+<li>Two Sums</li>
+</ol>
+<p>Given an array of integers <code>nums</code> and an integer <code>target</code>, return <em>indices of the two numbers such that they add up to <code>target</code></em>.</p>
+<p>You may assume that each input would have *<strong>exactly* one solution</strong>, and you may not use the <em>same</em> element twice.</p>
+<p>You can return the answer in any order.</p>
+<p><strong>Example 1:</strong></p>
+<pre><code>Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Output: Because nums[0] + nums[1] == 9, we return [0, 1].
+</code></pre>
+<p><strong>Example 2:</strong></p>
+<pre><code>Input: nums = [3,2,4], target = 6
+Output: [1,2]
+</code></pre>
+<p><strong>Example 3:</strong></p>
+<pre><code>Input: nums = [3,3], target = 6
+Output: [0,1]
+</code></pre>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li><code>2 &lt;= nums.length &lt;= 104</code></li>
+<li><code>-109 &lt;= nums[i] &lt;= 109</code></li>
+<li><code>-109 &lt;= target &lt;= 109</code></li>
+<li><strong>Only one valid answer exists.</strong></li>
+</ul>
+<h3 id="Solution">Solution:</h3>
+<p>Best solution: O(n)/O(n), hashmap that checks if one’s complement is in the hashset, if not keep inserting, otherwise return.</p>
+<hr>
+<ol start="2">
+<li>Two Sums II</li>
+</ol>
+<p>Sorted in non-descending order array, find two numbers that add up to target.</p>
+<h3 id="Solution-v2">Solution:</h3>
+<p>Best solution: O(n)/O(1), two pointers, index i from 0, index j from len-1. i controls increasing the current sum. j controls decreasing the current sum.</p>
+<hr>
+<ol start="3">
+<li>Two Sums III:</li>
+</ol>
+<p>Design a data structure that accepts a stream of integers and checks if it has a pair of integers that sum up to a particular value.</p>
+<p>Implement the <code>TwoSum</code> class:</p>
+<ul>
+<li><code>TwoSum()</code> Initializes the <code>TwoSum</code> object, with an empty array initially.</li>
+<li><code>void add(int number)</code> Adds <code>number</code> to the data structure.</li>
+<li><code>boolean find(int value)</code> Returns <code>true</code> if there exists any pair of numbers whose sum is equal to <code>value</code>, otherwise, it returns <code>false</code>.</li>
+</ul>
+<h3 id="Solution-v3">Solution:</h3>
+<p>Hashset the keeps appending O(n)/O(n).</p>
+<hr>
+<ol start="4">
+<li>Two Sums IV:</li>
+</ol>
+<p>Given the <code>root</code> of a Binary Search Tree and a target number <code>k</code>, return <em><code>true</code> if there exist two elements in the BST such that their sum is equal to the given target</em>.</p>
+<p><strong>Example 1:</strong></p>
+<pre><code>Input: root = [5,3,6,2,4,null,7], k = 9
+Output: true
+</code></pre>
+<p><strong>Example 2:</strong></p>
+<pre><code>Input: root = [5,3,6,2,4,null,7], k = 28
+Output: false
+</code></pre>
+<p><strong>Example 3:</strong></p>
+<pre><code>Input: root = [2,1,3], k = 4
+Output: true
+</code></pre>
+<p><strong>Example 4:</strong></p>
+<pre><code>Input: root = [2,1,3], k = 1
+Output: false
+</code></pre>
+<p><strong>Example 5:</strong></p>
+<pre><code>Input: root = [2,1,3], k = 3
+Output: true
+</code></pre>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li>The number of nodes in the tree is in the range <code>[1, 104]</code>.</li>
+<li><code>-104 &lt;= Node.val &lt;= 104</code></li>
+<li><code>root</code> is guaranteed to be a <strong>valid</strong> binary search tree.</li>
+<li><code>-105 &lt;= k &lt;= 105</code></li>
+</ul>
+<h3 id="Solution-v4">Solution:</h3>
+<p>preorder traverse 一下，得到 ordered set，可以用 hashset 来做，或者 two pointers 来做. O(n)/O(n)</p>
+<hr>
+<ol start="5">
+<li><strong>3Sum</strong></li>
+</ol>
+<p>Given an integer array nums, return all the triplets <code>[nums[i], nums[j], nums[k]]</code> such that <code>i != j</code>, <code>i != k</code>, and <code>j != k</code>, and <code>nums[i] + nums[j] + nums[k] == 0</code>.</p>
+<p>Notice that the solution set must not contain duplicate triplets.</p>
+<h3 id="Solution-v5">Solution:</h3>
+<ol>
+<li>
+<p>two pointers: O(n^2)/O(n), sort 之后, index i fom 0 to len-3. index j 和 index k 在 右侧找 complement。</p>
+</li>
+<li>
+<p>Hashset: O(n^2)/O(n), i 从左到右，j 对于右边剩下的部分做 hashset 2Sums，对于避免duplicates：</p>
+<ol>
+<li>
+<p>NoSort:</p>
+<ol>
+<li>对于确定 i:
+<ol>
+<li>j 那里是不会有 dup 的，直接用 two-pass hashset 即可</li>
+</ol>
+</li>
+<li>多保存一个 hashset 来表示已经看过的 nums[i] 值即可，如果又出现 nums[i] 直接跳过</li>
+</ol>
+</li>
+<li>
+<p>Sort:</p>
+<ol>
+<li>如果 nums[i-1] == nums[i], 跳过 i，就能保证 no dup</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>Hashset trick: 在确定 i 的时候，每次都要重新插入 hashset，不如我们做一次 hashmap, 后面每次 i 增加，都把 hashmap 里面的 i 给标记成 invalid，之后寻找的时候就看看 complement 是不是 invalid 的，只是一个 trick，能加快 c++ 一倍的速度</strong></p>
+<pre><code class="language-c++">class Solution &#123;
+public:
+    vector&lt;vector&lt;int&gt;&gt; threeSum(vector&lt;int&gt;&amp; nums) &#123;
+        set&lt;vector&lt;int&gt;&gt; res;
+        unordered_set&lt;int&gt; dups;
+        unordered_map&lt;int, int&gt; seen;
+        for (int i = 0; i &lt; nums.size(); ++i)
+            if (dups.insert(nums[i]).second) &#123;
+                for (int j = i + 1; j &lt; nums.size(); ++j) &#123;
+                    int complement = -nums[i] - nums[j];
+                    auto it = seen.find(complement);
+                    if (it != end(seen) &amp;&amp; it-&gt;second == i) &#123;
+                        vector&lt;int&gt; triplet = &#123;nums[i], nums[j], complement&#125;;
+                        sort(begin(triplet), end(triplet));
+                        res.insert(triplet);
+                    &#125;
+                    seen[nums[j]] = i;
+                &#125;
+            &#125;
+        return vector&lt;vector&lt;int&gt;&gt;(begin(res), end(res));
+    &#125;
+&#125;;
+</code></pre>
+<hr>
+<ol start="6">
+<li>
+<p>Two Sums less than k</p>
+<p>Given an array <code>nums</code> of integers and integer <code>k</code>, return the maximum <code>sum</code> such that there exists <code>i &lt; j</code> with <code>nums[i] + nums[j] = sum</code> and <code>sum &lt; k</code>. If no <code>i</code>, <code>j</code> exist satisfying this equation, return <code>-1</code>.</p>
+<p><strong>Example 1:</strong></p>
+<pre><code>Input: nums = [34,23,1,24,75,33,54,8], k = 60
+Output: 58
+Explanation: We can use 34 and 24 to sum 58 which is less than 60.
+</code></pre>
+<p><strong>Example 2:</strong></p>
+<pre><code>Input: nums = [10,20,30], k = 15
+Output: -1
+Explanation: In this case it is not possible to get a pair sum less that 15.
+</code></pre>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 100</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 1000</code></li>
+<li><code>1 &lt;= k &lt;= 2000</code></li>
+</ul>
+</li>
+</ol>
+<h3 id="Solution-v6">Solution:</h3>
+<ol>
+<li>O(nlogn)/O(1), sort 之后 two pointers, 我们需要不停的向 k 逼近，i+j &gt;= k 时，j–; i+j &lt; k 时 i++; 知道 i == j 退出，找到max</li>
+<li>O(m+n)/O(m), 假设 数组包含了 m 个 unique values（constraints 说明了 <strong>m&lt;=1000</strong> ），假设 n &gt;&gt; m 的时候，这种方法就好用了，把 0…1000 当做数组，lo = 0, hi = 1000.
+<ol>
+<li>count array 记录所有出现的 number 的次数</li>
+<li>全部 lo &lt;= hi (因为可能存在 dup numbers in array)</li>
+<li>lo + hi &gt;= k 或 count[k] == 0: hi –</li>
+<li>lo + hi &lt; k, 如果 lo == hi 则check count[lo] &gt;= 2; 则 存下来后面对比</li>
+</ol>
+</li>
+</ol>
+<hr>
+<ol start="7">
+<li>3Sum smaller</li>
+</ol>
+<p>Given an array of <code>n</code> integers <code>nums</code> and an integer <code>target</code>, find the number of index triplets <code>i</code>, <code>j</code>, <code>k</code> with <code>0 &lt;= i &lt; j &lt; k &lt; n</code> that satisfy the condition <code>nums[i] + nums[j] + nums[k] &lt; target</code>.</p>
+<p><strong>Example 1:</strong></p>
+<pre><code>Input: nums = [-2,0,1,3], target = 2
+Output: 2
+Explanation: Because there are two triplets which sums are less than 2:
+[-2,0,1]
+[-2,0,3]
+</code></pre>
+<p><strong>Example 2:</strong></p>
+<pre><code>Input: nums = [], target = 0
+Output: 0
+</code></pre>
+<p><strong>Example 3:</strong></p>
+<pre><code>Input: nums = [0], target = 0
+Output: 0
+</code></pre>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li><code>n == nums.length</code></li>
+<li><code>0 &lt;= n &lt;= 3500</code></li>
+<li><code>-100 &lt;= nums[i] &lt;= 100</code></li>
+<li><code>-100 &lt;= target &lt;= 100</code></li>
+</ul>
+<h3 id="Solution-v7">Solution:</h3>
+<ol>
+<li>
+<p>two pointers, index triplets 这里只要求 index 不一样即可，而且只计算数量; O(n^2)/O(n)； O(n) space 是因为 sorting，但如果允许的话，就是 O(1)</p>
+<pre><code class="language-c++">class Solution &#123;
+public:
+    // 想法就是 two pointers，i 从左到右，j=0,k=len-1，然后 k 不断从右逼近，把 i+j+k &gt;= t 的都排除掉
+    // 然后ok的话就 计算 k-j 则表示(j,j+1)...(j,k) 都满足条件，加到总数去
+    // 之后 j+1, k 继续变小，直到 j==k 退出
+    // O(n^2)/O(n)
+    int threeSumSmaller(vector&lt;int&gt;&amp; nums, int target) &#123;
+        int count = 0;
+        sort(nums.begin(), nums.end() );
+        int length = nums.size();
+        for(int i = 0; i &lt; length-2; i++) &#123;
+            int j = i+1, k = length-1;
+            while(j &lt; k) &#123;
+                int sum = nums[i] + nums[j] + nums[k];
+                if(sum &gt;= target) &#123;
+                    k--;
+                &#125;
+                else&#123;
+                    count += k - j;
+                    j++;
+                &#125;
+            &#125;
+        &#125;
+        return count;
+    &#125;
+&#125;;
+</code></pre>
+<blockquote>
+<p>这里注意一点，nums.size() 返回是 size_t, 这里做 size_t-1 和 size_t-2 可能会overflow</p>
+<p><strong>所以最好是用 int length = … 来间接的操作一下</strong></p>
+</blockquote>
+</li>
+</ol>
+<hr>
+<ol start="8">
+<li>3Sums closest</li>
+</ol>
+<p>Given an integer array <code>nums</code> of length <code>n</code> and an integer <code>target</code>, find three integers in <code>nums</code> such that the sum is closest to <code>target</code>.</p>
+<p>Return <em>the sum of the three integers</em>.</p>
+<p>You may assume that each input would have exactly one solution.</p>
+<p><strong>Example 1:</strong></p>
+<pre><code>Input: nums = [-1,2,1,-4], target = 1
+Output: 2
+Explanation: The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
+</code></pre>
+<p><strong>Example 2:</strong></p>
+<pre><code>Input: nums = [0,0,0], target = 1
+Output: 0
+</code></pre>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li><code>3 &lt;= nums.length &lt;= 1000</code></li>
+<li><code>-1000 &lt;= nums[i] &lt;= 1000</code></li>
+<li><code>-104 &lt;= target &lt;= 104</code></li>
+</ul>
+<h3 id="Solution-v8">Solution:</h3>
+<ol>
+<li>3sums 变 2sums，sort 之后，如果 j+k &gt; t, 则 j + {k+1} 会更大，则没有用，所以接着看 j + {k-1}. 另一个方向同理. O(n^2)/O(n);</li>
+</ol>
+<hr>
+<ol start="9">
+<li>4sums</li>
+</ol>
+<p>Given an array <code>nums</code> of <code>n</code> integers, return <em>an array of all the <strong>unique</strong> quadruplets</em> <code>[nums[a], nums[b], nums[c], nums[d]]</code> such that:</p>
+<ul>
+<li><code>0 &lt;= a, b, c, d &lt; n</code></li>
+<li><code>a</code>, <code>b</code>, <code>c</code>, and <code>d</code> are <strong>distinct</strong>.</li>
+<li><code>nums[a] + nums[b] + nums[c] + nums[d] == target</code></li>
+</ul>
+<p>You may return the answer in <strong>any order</strong>.</p>
+<p><strong>Example 1:</strong></p>
+<pre><code>Input: nums = [1,0,-1,0,-2,2], target = 0
+Output: [[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]
+</code></pre>
+<p><strong>Example 2:</strong></p>
+<pre><code>Input: nums = [2,2,2,2,2], target = 8
+Output: [[2,2,2,2]]
+</code></pre>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 200</code></li>
+<li><code>-109 &lt;= nums[i] &lt;= 109</code></li>
+<li><code>-109 &lt;= target &lt;= 109</code></li>
+</ul>
+<h3 id="Solution-v9">Solution:</h3>
+<ol>
+<li>变成 3sums 接着做, O(n^3)/O(n)</li>
+</ol>
+<hr>
+<ol start="10">
+<li>4Sums II</li>
+</ol>
+<p>Given four integer arrays <code>nums1</code>, <code>nums2</code>, <code>nums3</code>, and <code>nums4</code> all of length <code>n</code>, return the number of tuples <code>(i, j, k, l)</code> such that:</p>
+<ul>
+<li><code>0 &lt;= i, j, k, l &lt; n</code></li>
+<li><code>nums1[i] + nums2[j] + nums3[k] + nums4[l] == 0</code></li>
+</ul>
+<p><strong>Example 1:</strong></p>
+<pre><code>Input: nums1 = [1,2], nums2 = [-2,-1], nums3 = [-1,2], nums4 = [0,2]
+Output: 2
+Explanation:
+The two tuples are:
+1. (0, 0, 0, 1) -&gt; nums1[0] + nums2[0] + nums3[0] + nums4[1] = 1 + (-2) + (-1) + 2 = 0
+2. (1, 1, 0, 0) -&gt; nums1[1] + nums2[1] + nums3[0] + nums4[0] = 2 + (-1) + (-1) + 0 = 0
+</code></pre>
+<p><strong>Example 2:</strong></p>
+<pre><code>Input: nums1 = [0], nums2 = [0], nums3 = [0], nums4 = [0]
+Output: 1
+</code></pre>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li><code>n == nums1.length</code></li>
+<li><code>n == nums2.length</code></li>
+<li><code>n == nums3.length</code></li>
+<li><code>n == nums4.length</code></li>
+<li><code>1 &lt;= n &lt;= 200</code></li>
+<li><code>-228 &lt;= nums1[i], nums2[i], nums3[i], nums4[i] &lt;= 228</code></li>
+</ul>
+<h3 id="Solution-v10">Solution:</h3>
+<ol>
+<li>
+<p>这里思考因为不是同一个 vector，所以不能  two pointers, 但是因为是 equal 问题，我们用 hashset 可以，这里可以用 3个 forloop 来控制 i,j,k, 之后用 O(1) 的 hash 来找 l. 这样就是 O(n^3)/O(n)</p>
+</li>
+<li>
+<p><strong>这里更好的方法是分成 两组，然后构建 i+j 的 hashset，和 k+l 的 hashset，之后对比两个hashset来找，这样就是 O(n<sup>2)/O(n</sup>2)</strong></p>
+</li>
+</ol>
+
+    </section>
+
+</div>
+
+            <!-- Footer -->
+            <footer id="footer">
+    <section>
+        <form method="post" action="#">
+            <div class="fields">
+                <div class="field">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" />
+                </div>
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" id="email" />
+                </div>
+                <div class="field">
+                    <label for="message">Message</label>
+                    <textarea name="message" id="message" rows="3"></textarea>
+                </div>
+            </div>
+            <ul class="actions">
+                <li><input type="submit" value="Send Message" /></li>
+            </ul>
+        </form>
+    </section>
+    <section class="split contact">
+        <section class="alt">
+            <h3>Address</h3>
+            <p>福建省福州市鼓楼区冶山路26号海洋社区</p>
+        </section>
+        <section>
+            <h3>Phone</h3>
+            <p>(+86) 130-5590-3386</p>
+        </section>
+        <section>
+            <h3>Email</h3>
+            <p>ximin.lin.work@outlook.com</p>
+        </section>
+        <section>
+            <h3>Social</h3>
+            <ul class="icons alt">
+                <!-- <li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+                <li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+                <li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li> -->
+                <li><a target="_blank" rel="noopener" href="https://github.com/XiminLin" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+            </ul>
+        </section>
+    </section>
+</footer>
+
+            <!-- Copyright -->
+            <div id="copyright">
+                <ul><li>&copy; Untitled</li><li>Design: <a target="_blank" rel="noopener" href="https://html5up.net">HTML5 UP</a></li></ul>
+            </div>
+
+        </div>
+    
+    <!-- Scripts -->
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/browser.min.js"></script>
+    <script src="/js/breakpoints.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/jquery.justifiedGallery.js"></script>
+    <script src="/js/main.js"></script>
+    <!-- <script src="/js/jquery.fancybox.js"></script> -->
+    <!-- <scritp src="/js/gallery.js"></scritp> -->
+    
+    <!-- JustifiedGallery -->
+    <script>
+    $('#mygallery').justifiedGallery({
+        rowHeight : 300,
+        lastRow : 'nojustify',
+        margins : 3
+    });
+    </script>
+
+    <!-- Image FancyBox -->
+    <!-- <script> 
+    // $('[data-fancybox="image"]').fancybox({
+	//     thumbs : {
+	//       autoStart : true //缩略图
+	//     }
+	//   });
+	  $('[data-fancybox]').fancybox({
+	        protect: true,//图片右键不能下载
+	    });
+	</script> -->
+    
+    </body>
+</html>

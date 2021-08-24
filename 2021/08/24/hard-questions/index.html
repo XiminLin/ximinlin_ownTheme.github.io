@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+     
+    <title>Ximin's Interesting Hard Questions</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/justifiedGallery.css" />
+    <!-- <link rel='stylesheet' type='text/html' href="/css/jquery.fancybox.css" media="all"/> -->
+    <noscript><link rel="stylesheet" href="/css/noscript.css" /></noscript>
+<meta name="generator" content="Hexo 5.4.0"></head>
+    <body class="is-preload">
+
+        <div id="wrapper" class="fade-in">
+
+            <!-- Intro -->
+            
+
+            <!-- Header -->
+            <header id="header">
+    <a href="/" class="logo">JFF</a>
+</header>
+
+            <!-- Navigation -->
+            <nav id="nav">
+    <ul class="links">
+        
+            
+            <li class= ><a href="/home/">home</a></li>
+        
+            
+            <li class= ><a href="/categories/blog/">blog</a></li>
+        
+            
+            <li class= ><a href="/categories/project/">project</a></li>
+        
+            
+            <li class= ><a href="/resume/">resume</a></li>
+        
+            
+            <li class= ><a href="/galleries/">galleries</a></li>
+        
+    </ul>
+    <ul class="icons">
+        <!-- <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+        <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+        <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li> -->
+        <li><a target="_blank" rel="noopener" href="https://github.com/XiminLin" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+    </ul>
+</nav>
+
+            <!-- Main -->
+            <div id="main">
+    <!-- Post -->
+    <section class="post">
+        <header class="major">
+            <span class="date">Aug 24, 2021</span>
+            <h1>Interesting Hard Questions</h1>
+        </header>
+        <h2 id="Interesting-Hard-Questions">Interesting Hard Questions:</h2>
+<ol>
+<li>Median of two sorted arrays:</li>
+</ol>
+<p>Given two sorted arrays <code>nums1</code> and <code>nums2</code> of size <code>m</code> and <code>n</code> respectively, return <strong>the median</strong> of the two sorted arrays.</p>
+<p>The overall run time complexity should be <code>O(log (m+n))</code>.</p>
+<p><strong>Example 1:</strong></p>
+<pre><code>Input: nums1 = [1,3], nums2 = [2]
+Output: 2.00000
+Explanation: merged array = [1,2,3] and median is 2.
+</code></pre>
+<p><strong>Example 2:</strong></p>
+<pre><code>Input: nums1 = [1,2], nums2 = [3,4]
+Output: 2.50000
+Explanation: merged array = [1,2,3,4] and median is (2 + 3) / 2 = 2.5.
+</code></pre>
+<p><strong>Example 3:</strong></p>
+<pre><code>Input: nums1 = [0,0], nums2 = [0,0]
+Output: 0.00000
+</code></pre>
+<p><strong>Example 4:</strong></p>
+<pre><code>Input: nums1 = [], nums2 = [1]
+Output: 1.00000
+</code></pre>
+<p><strong>Example 5:</strong></p>
+<pre><code>Input: nums1 = [2], nums2 = []
+Output: 2.00000
+</code></pre>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li><code>nums1.length == m</code></li>
+<li><code>nums2.length == n</code></li>
+<li><code>0 &lt;= m &lt;= 1000</code></li>
+<li><code>0 &lt;= n &lt;= 1000</code></li>
+<li><code>1 &lt;= m + n &lt;= 2000</code></li>
+<li><code>-106 &lt;= nums1[i], nums2[i] &lt;= 106</code></li>
+</ul>
+<h3 id="Solution">Solution:</h3>
+<ol>
+<li>如果brute force 我们直接 merge，得到median就 O(m+n). 看到题目要求 O(log(m+n)), 知道应该使用 binary search.</li>
+<li><strong>考虑，如果我们在 array A 中找到一个index i，在 array B 中对应的 index j（median或median旁边），必须满足 i + j = (m + n + 1)/2. 而且，必须满足 A[i-1] &lt; B[j] 且 B[j-1] &lt; A[i]。</strong></li>
+<li>如果 A[i-1] &gt; B[j], 证明说 A[i] 会比真正 median 大，所以 i 减小；反之亦然。</li>
+</ol>
+<p>总结起来就是这个图片：</p>
+<img src="/2021/08/24/hard-questions/1_exp.png" class="image fit">
+<p>结合以上的点，我们选择在 array A 里面搜索，然后找到 对应的 array B 中的 index j, 之后接着判断。</p>
+<blockquote>
+<p>这里我们因为 j = (m+n+1)/2 - i 得到，**保证 j &gt;= 0, 所以需要 m &lt;= n。**而且也加快搜索速度！！！</p>
+</blockquote>
+<pre><code class="language-python">def findMedianSortedArrays(self, A, B):
+        m, n = len(A), len(B)
+        if m &gt; n:
+            A, B, m, n = B, A, n, m
+        # if n == 0:
+        #     raise ValueError
+
+        imin, imax, half_len = 0, m, (m + n + 1) / 2
+        while imin &lt;= imax:
+            i = (imin + imax) / 2
+            j = half_len - i
+            if i &lt; m and B[j-1] &gt; A[i]:
+                # i is too small, must increase it
+                imin = i + 1
+            elif i &gt; 0 and A[i-1] &gt; B[j]:
+                # i is too big, must decrease it
+                imax = i - 1
+            else:
+                # i is perfect
+
+                if i == 0: max_of_left = B[j-1]
+                elif j == 0: max_of_left = A[i-1]
+                else: max_of_left = max(A[i-1], B[j-1])
+                    
+                if (m + n) % 2 == 1:
+                    return max_of_left
+
+                if i == m: min_of_right = B[j]
+                elif j == n: min_of_right = A[i]
+                else: min_of_right = min(A[i], B[j])
+
+                return (max_of_left + min_of_right) / 2.0
+</code></pre>
+<p><strong>注意这里 i 的搜索范围是 [0,m], 因为 i 类似于 cut，i=0 代表 A[0] 也在 right_part, i=m 代表 A[m-1] 在 left_part</strong></p>
+<p>因为 (m+n+1)/2 保证了左边比右边长，所以如果奇数的话，max_of_left 就是 median</p>
+<hr>
+<ol start="2">
+<li>Trapping Rain Water</li>
+</ol>
+<p>Given <code>n</code> non-negative integers representing an elevation map where the width of each bar is <code>1</code>, compute how much water it can trap after raining.</p>
+<p><strong>Example 1:</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2018/10/22/rainwatertrap.png" alt="img"></p>
+<pre><code>Input: height = [0,1,0,2,1,0,1,3,2,1,2,1]
+Output: 6
+Explanation: The above elevation map (black section) is represented by array [0,1,0,2,1,0,1,3,2,1,2,1]. In this case, 6 units of rain water (blue section) are being trapped.
+</code></pre>
+<p><strong>Example 2:</strong></p>
+<pre><code>Input: height = [4,2,0,3,2,5]
+Output: 9
+</code></pre>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li><code>n == height.length</code></li>
+<li><code>1 &lt;= n &lt;= 2 * 104</code></li>
+<li><code>0 &lt;= height[i] &lt;= 105</code></li>
+</ul>
+<h3 id="Solution-v2">Solution:</h3>
+<ol>
+<li>
+<p>先考虑 brute-force, 对于每一个点，我们考虑左边的最高的墙和右边的最高的墙，最终能hold的水为 min(left_height, right_height) - curr_height. 这样就 O(n^2)/O(1)</p>
+</li>
+<li>
+<p>Brute-force 基础上我们用 <strong>DP</strong> 存下左边到右边的高度，和右边到左边的高度，之后直接求. O(n)/O(n)</p>
+</li>
+<li>
+<p>用一个 stack 来做，观察到如果有 valley，我们会去iterate直到比当前 height 高的时候，这个时候我们更新得到的water，同时把这个valley弄平掉。O(n)/O(n), faster than 2., in one pass.</p>
+<ol>
+<li>我们往 stack 中添加 index，如果比当前 index 的 height 低，则继续添加；如果比 top() 的 height 大，证明出现了valley，pop 出小的部分，计算得到的水量计入总量；</li>
+</ol>
+<pre><code class="language-c++">int trap(vector&lt;int&gt;&amp; height)
+&#123;
+    int ans = 0, current = 0;
+    stack&lt;int&gt; st;
+    while (current &lt; height.size()) &#123;
+        while (!st.empty() &amp;&amp; height[current] &gt; height[st.top()]) &#123;
+            int top = st.top();
+            st.pop();
+            if (st.empty())
+                break;
+            int distance = current - st.top() - 1;
+            int bounded_height = min(height[current], height[st.top()]) - height[top];
+            ans += distance * bounded_height;
+        &#125;
+        st.push(current++);
+    &#125;
+    return ans;
+&#125;
+</code></pre>
+</li>
+<li>
+<p><strong>two pointers approach: O(n)/O(1)</strong></p>
+</li>
+</ol>
+<p>Best explained here:</p>
+<style>.embed-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+  }
+  .embed-container iframe, .embed-container object, .embed-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  </style>
+
+<div class="embed-container"><iframe src="https://www.youtube.com/embed/XqTBrQYYUcc" allowfullscreen frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe></div>
+<p>总结就是：</p>
+<ol>
+<li>
+<p>我们对于每个 index 都在求函数 g(i) = min(left_max(i), right_max(i) )。这个类似于求 lower envelop, <strong>遇到类似lower envelop问题就是要想到 two pointers 或者 binary search</strong>，这里介绍 two pointers 办法</p>
+</li>
+<li>
+<p>利用 left_max 函数 non-decreasing 和 right_max 函数 non-increasing 的性质，每次对比决定 pointer i 还是 pointer j 往中间移动。</p>
+</li>
+</ol>
+<pre><code class="language-java">class Solution &#123;
+    public int trap(int[] height) &#123;
+        // time : O(n)
+        // space : O(1)
+        if (height.length==0) return 0; 
+        int left = 0, right = height.length-1; 
+        int leftMax=0, rightMax=0; 
+        int ans = 0; 
+        while (left &lt; right) &#123;
+            if (height[left] &gt; leftMax) leftMax = height[left]; 
+            if (height[right] &gt; rightMax) rightMax = height[right];
+            if (leftMax &lt; rightMax) &#123;
+                ans += Math.max(0, leftMax-height[left]); 
+                left++; 
+            &#125; else &#123;
+                ans += Math.max(0, rightMax-height[right]); 
+                right--; 
+            &#125;
+        &#125;
+        return ans; 
+    &#125;
+&#125;
+</code></pre>
+<hr>
+
+    </section>
+
+</div>
+
+            <!-- Footer -->
+            <footer id="footer">
+    <section>
+        <form method="post" action="#">
+            <div class="fields">
+                <div class="field">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" />
+                </div>
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" id="email" />
+                </div>
+                <div class="field">
+                    <label for="message">Message</label>
+                    <textarea name="message" id="message" rows="3"></textarea>
+                </div>
+            </div>
+            <ul class="actions">
+                <li><input type="submit" value="Send Message" /></li>
+            </ul>
+        </form>
+    </section>
+    <section class="split contact">
+        <section class="alt">
+            <h3>Address</h3>
+            <p>福建省福州市鼓楼区冶山路26号海洋社区</p>
+        </section>
+        <section>
+            <h3>Phone</h3>
+            <p>(+86) 130-5590-3386</p>
+        </section>
+        <section>
+            <h3>Email</h3>
+            <p>ximin.lin.work@outlook.com</p>
+        </section>
+        <section>
+            <h3>Social</h3>
+            <ul class="icons alt">
+                <!-- <li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+                <li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+                <li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li> -->
+                <li><a target="_blank" rel="noopener" href="https://github.com/XiminLin" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+            </ul>
+        </section>
+    </section>
+</footer>
+
+            <!-- Copyright -->
+            <div id="copyright">
+                <ul><li>&copy; Untitled</li><li>Design: <a target="_blank" rel="noopener" href="https://html5up.net">HTML5 UP</a></li></ul>
+            </div>
+
+        </div>
+    
+    <!-- Scripts -->
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/browser.min.js"></script>
+    <script src="/js/breakpoints.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/jquery.justifiedGallery.js"></script>
+    <script src="/js/main.js"></script>
+    <!-- <script src="/js/jquery.fancybox.js"></script> -->
+    <!-- <scritp src="/js/gallery.js"></scritp> -->
+    
+    <!-- JustifiedGallery -->
+    <script>
+    $('#mygallery').justifiedGallery({
+        rowHeight : 300,
+        lastRow : 'nojustify',
+        margins : 3
+    });
+    </script>
+
+    <!-- Image FancyBox -->
+    <!-- <script> 
+    // $('[data-fancybox="image"]').fancybox({
+	//     thumbs : {
+	//       autoStart : true //缩略图
+	//     }
+	//   });
+	  $('[data-fancybox]').fancybox({
+	        protect: true,//图片右键不能下载
+	    });
+	</script> -->
+    
+    </body>
+</html>

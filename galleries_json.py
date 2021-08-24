@@ -3,9 +3,10 @@ import os
 
 
 galleries_raw = open("source/_data/galleries_raw.txt", "r")
+# galleries_raw = open("source/_data/test.txt", "r")
 
 galleries_json = []
-gallery_json = {"photos":[]}
+gallery_json = {"photos":[], "links": []}
 empty = True
 
 while True:
@@ -17,6 +18,8 @@ while True:
         continue
     if line.startswith("http"):
         gallery_json['photos'].append(line)
+        link = line.replace("i.", "")[:-5]
+        gallery_json['links'].append(link)
         empty = False
     elif line.startswith("date"):
         gallery_json['date'] = line.replace("date:","").strip()
@@ -26,7 +29,7 @@ while True:
         else:
             gallery_json['cover'] = gallery_json['photos'][0]
             galleries_json.append(gallery_json)
-            gallery_json = {"name": line, "cover": "", "photos":[]}
+            gallery_json = {"name": line, "cover": "", "photos":[], "links": []}
             empty = True
 
 if not empty:

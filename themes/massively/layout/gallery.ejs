@@ -18,7 +18,8 @@
     <div id="mygallery">
             <% for(var i = 0; i < gallery.photos.length; i++)  { %>
                 <% var photo_name = gallery.photos[i]; %>
-                <a href="<%- photo_name %>">
+                <% var photo_link = gallery.links[i]; %>
+                <a href="<%- photo_link %>">
                     <img src="<%- photo_name %>" />
                 </a>
             <% } %>

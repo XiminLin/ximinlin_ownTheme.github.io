@@ -1,0 +1,94 @@
+{
+  "main": {
+    "id": "40c999a60ef5f6de",
+    "type": "split",
+    "children": [
+      {
+        "id": "917bacbc302523df",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "two-sums.md",
+            "mode": "source"
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "4f06a7a7c25c90af",
+    "type": "split",
+    "children": [
+      {
+        "id": "2e0430898816dd9f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "bf4d8c376550872b",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "73a426532fadd715",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "ca7bdade35fb07e6",
+    "type": "split",
+    "children": [
+      {
+        "id": "4e92d9e8934e44af",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ca53b40200542eca",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "two-sums.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "917bacbc302523df",
+  "lastOpenFiles": [
+    "two-sums.md",
+    "hello-world.md"
+  ]
+}

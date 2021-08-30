@@ -4,14 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "917bacbc302523df",
+        "id": "99a3e0678b76616b",
         "type": "leaf",
         "state": {
-          "type": "markdown",
-          "state": {
-            "file": "two-sums.md",
-            "mode": "source"
-          }
+          "type": "empty",
+          "state": {}
         }
       }
     ],
@@ -68,7 +65,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "two-sums.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -83,11 +79,12 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
-  "active": "917bacbc302523df",
+  "active": "99a3e0678b76616b",
   "lastOpenFiles": [
+    "hard-questions.md",
+    "hard-questions/1_exp.png",
     "two-sums.md",
     "hello-world.md"
   ]
